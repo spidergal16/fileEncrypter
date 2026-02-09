@@ -1,19 +1,19 @@
-#include "Encrypt.h"
+#include "Decrypt.h"
 
-std::string Encrypt::encryptFile(const std::string& srcFile, const std::string& dstFile, const std::string& key)
+std::string Decrypt::decryptFile(const std::string& srcFile, const std::string& dstFile, const std::string& key)
 {
     int keyVal = 0;
-    std::ifstream fileToEncrypt(srcFile, std::ios::binary);
+    std::ifstream fileToDecrypt(srcFile, std::ios::binary);
     char byteRead = ' ';
-    char encryptedByte = ' ';
+    char decryptedByte = ' ';
     std::string outputData = "";
     std::string dstFilePath = "";
-    
+
     // Get only the file name and extension from src file
     std::experimental::filesystem::path filePath(srcFile);
     std::string fileName = filePath.filename().string();
 
-    if (!fileToEncrypt)
+    if (!fileToDecrypt)
     {
         throw std::invalid_argument("Error opening file!");
     }
@@ -29,22 +29,21 @@ std::string Encrypt::encryptFile(const std::string& srcFile, const std::string& 
         keyVal += tempCh;
     }
 
-    while (fileToEncrypt.get(byteRead))
+    while (fileToDecrypt.get(byteRead))
     {
-        encryptedByte = encryptByte(byteRead, keyVal);
-        outputData += encryptedByte;
+        decryptedByte = decryptByte(byteRead, keyVal);
+        outputData += decryptedByte;
     }
 
-    fileToEncrypt.close();
+    fileToDecrypt.close();
 
     if (dstFile.empty())
     {
-        dstFilePath = "Encrypted_";
+        dstFilePath = "Decrypted_";
         dstFilePath += fileName;
         std::ofstream outputFile(dstFilePath);
         outputFile << outputData;
         outputFile.close();
-        
     }
 
     else
@@ -58,10 +57,10 @@ std::string Encrypt::encryptFile(const std::string& srcFile, const std::string& 
     return dstFilePath;
 }
 
-char Encrypt::encryptByte(char orgByte, int key)
-{    
+char Decrypt::decryptByte(char orgByte, int key)
+{
     // XOR the byte
-    char encryptedByte = orgByte ^ key;
+    char decryptedByte = orgByte ^ key;
 
-    return encryptedByte;
+    return decryptedByte;
 }
