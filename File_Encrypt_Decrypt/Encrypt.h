@@ -16,7 +16,7 @@ class Encrypt
 	static std::string encryptFile(const std::string& srcFile, const std::string& dstFile, const std::string& key);
 
 	// Function to encrypt a single byte based on a given key.
-	static unsigned char encryptByte(unsigned char orgByte, const std::string& key);
+	static char encryptByte(char orgByte, const std::string& key);
 
 
 };
