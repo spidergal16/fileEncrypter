@@ -9,10 +9,9 @@ int main()
 	std::string filePath = "";
 
 	std::cout << "Enter the file path to encrypt: " << std::endl;
-	std::cin >> filePath;
+	std::cin >> filePath;	
 
-	Encrypt::encryptFile(filePath, "", "a");
-
+	Decrypt::decryptFile(Encrypt::encryptFile(filePath, "", "a"), "", "a");
 
 	return 0;
 }
