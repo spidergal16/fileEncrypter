@@ -10,7 +10,7 @@ std::string Decrypt::decryptFile(const std::string& srcFile, const std::string& 
     std::string dstFilePath = "";
 
     // Get only the file name and extension from src file
-    std::experimental::filesystem::path filePath(srcFile);
+    std::filesystem::path filePath(srcFile);
     std::string fileName = filePath.filename().string();
 
     if (!fileToDecrypt)

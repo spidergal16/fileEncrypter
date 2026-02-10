@@ -3,8 +3,7 @@
 #include <fstream>
 #include <string>
 
-#define _SILENCE_EXPERIMENTAL_FILESYSTEM_DEPRECATION_WARNING
-#include <experimental/filesystem>
+#include <filesystem>
 
 
 class Decrypt
