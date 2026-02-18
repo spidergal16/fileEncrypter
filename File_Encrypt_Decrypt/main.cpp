@@ -11,7 +11,7 @@ int main()
 	std::cout << "Enter the file path to encrypt: " << std::endl;
 	std::cin >> filePath;	
 
-	Decrypt::decryptFile(Encrypt::encryptFile(filePath, "", "a"), "", "a");
+	Decrypt::decryptFile(Encrypt::encryptFile(filePath, "", "superSECRETkey"), "", "superSECRETkey");
 
 	return 0;
 }

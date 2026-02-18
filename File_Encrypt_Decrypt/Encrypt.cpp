@@ -3,6 +3,7 @@
 std::string Encrypt::encryptFile(const std::string& srcFile, const std::string& dstFile, const std::string& key)
 {
     int keyVal = 0;
+    int i = 0;
     std::ifstream fileToEncrypt(srcFile, std::ios::binary);
     char byteRead = ' ';
     char encryptedByte = ' ';
@@ -23,14 +24,9 @@ std::string Encrypt::encryptFile(const std::string& srcFile, const std::string& 
         throw std::invalid_argument("Key is empty!");
     }
 
-    // Get value of the key
-    for (char tempCh : key)
-    {
-        keyVal += tempCh;
-    }
-
     while (fileToEncrypt.get(byteRead))
     {
+        keyVal = key[i % key.size()];
         encryptedByte = encryptByte(byteRead, keyVal);
         outputData += encryptedByte;
     }
@@ -61,7 +57,7 @@ std::string Encrypt::encryptFile(const std::string& srcFile, const std::string& 
 char Encrypt::encryptByte(char orgByte, int key)
 {    
     // XOR the byte
-    char encryptedByte = orgByte ^ key;
+    char encryptedByte = (orgByte ^ key) + key;
 
     return encryptedByte;
 }
