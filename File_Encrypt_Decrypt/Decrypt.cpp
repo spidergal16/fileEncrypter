@@ -29,6 +29,7 @@ std::string Decrypt::decryptFile(const std::string& srcFile, const std::string& 
         keyVal = key[i % key.size()];
         decryptedByte = decryptByte(byteRead, keyVal);
         outputData += decryptedByte;
+        i++;
     }
 
     fileToDecrypt.close();

@@ -29,6 +29,7 @@ std::string Encrypt::encryptFile(const std::string& srcFile, const std::string& 
         keyVal = key[i % key.size()];
         encryptedByte = encryptByte(byteRead, keyVal);
         outputData += encryptedByte;
+        i++;
     }
 
     fileToEncrypt.close();
